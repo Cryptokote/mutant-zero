@@ -1,0 +1,38 @@
+<div class="list">
+  <div class="btn btn-warning" (click)="filterProjectsList('ALL')">
+    All items
+  </div>
+  <div class="btn btn-warning" (click)="filterProjectsList('NO_COMPLETED')">
+    Without completed
+  </div>
+  <div class="btn btn-warning" (click)="filterProjectsList('AVAILABLE')">
+    Available only
+  </div>
+  <table class="table table-dark">
+    <tr>
+      <th>Project name\Requirements</th>
+      <th>Skills</th>
+      <th>Profit</th>
+      <th>Culture ({{currentDevLvl.culture}})</th>
+      <th>Warfare ({{currentDevLvl.warfare}})</th>
+      <th>Technology ({{currentDevLvl.technology}})</th>
+      <th>Food supply ({{currentDevLvl.food_supply}})</th>
+    </tr>
+    <ng-container *ngFor="let project of filteredProjectList">
+      <tr [ngClass]="{
+      'bg-success': project.isFinished,
+      'bg-warning': project.isInWork,
+      'table-dark': !project.isAvailable && !project.isInWork && !project.isFinished
+      }">
+        <td>{{project.name}} <span *ngIf="!project.isFinished">({{project.work_points_completed}}/{{project.work_points}})</span></td>
+        <td><span *ngFor="let skill of project.skills">{{skill}}, </span></td>
+        <td><app-development-bonus [development]="project.dev_bonus"></app-development-bonus></td>
+        <td>{{project.dev_req?.culture}}</td>
+        <td>{{project.dev_req?.warfare}}</td>
+        <td>{{project.dev_req?.technology}}</td>
+        <td>{{project.dev_req?.food_supply}}</td>
+      </tr>
+    </ng-container>
+
+  </table>
+</div>

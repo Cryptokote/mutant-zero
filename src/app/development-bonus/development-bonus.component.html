@@ -1,0 +1,10 @@
+<div *ngIf="!!development">
+  <ng-container *ngFor="let devKey of devKeys">
+    <div class="icon-wrapper {{devKey}}">
+      <img src="{{icons[devKey]}}" class="dev-icon">
+      <div class="counter">
+        {{development[devKey]}}
+      </div>
+    </div>
+  </ng-container>
+</div>
