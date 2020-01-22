@@ -27,3 +27,17 @@ export interface Devs {
 export interface StartedProject {
   [key: string]: number;
 }
+
+export interface Sector extends ZoneMapCoordinates {
+  rotLvl?: number;
+  iconPath?: string;
+  treat?: string;
+  artifact?: boolean;
+  isArk?: boolean;
+  explored: boolean;
+}
+
+export interface ZoneMapCoordinates {
+  col: number;
+  row: string;
+}

@@ -1,4 +1,4 @@
-import {Devs, Project, StartedProject} from './data.types';
+import {Devs, Project, Sector, StartedProject} from './data.types';
 
 export const PROJECTS: Array<Project> = [
 {name: 'DEFENSES',
@@ -482,3 +482,4 @@ export const PROJECTS_IN_PROGRESS: StartedProject = {
   'ZONE WRESTLING': 2
 };
 export const FINISHED_PROJECTS: Array<string> = ['HUNTING PARTY', 'WATCHTOWER', 'MUSEUM'];
+export const ZONE_MAP_DATA: Array<Sector> = [{row: 'Q', col: 24, explored: true, isArk: true}];
