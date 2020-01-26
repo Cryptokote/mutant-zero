@@ -13,10 +13,18 @@
       <th>Project name\Requirements</th>
       <th>Skills</th>
       <th>Profit</th>
-      <th>Culture ({{currentDevLvl.culture}})</th>
-      <th>Warfare ({{currentDevLvl.warfare}})</th>
-      <th>Technology ({{currentDevLvl.technology}})</th>
-      <th>Food supply ({{currentDevLvl.food_supply}})</th>
+      <th [ngClass]="{'text-warning': filterDevBonus === 'culture'}" (click)="filterProjectsList('DEV_BONUS', 'culture')">
+        Culture ({{currentDevLvl.culture}})
+      </th>
+      <th [ngClass]="{'text-warning': filterDevBonus === 'warfare'}" (click)="filterProjectsList('DEV_BONUS', 'warfare')">
+        Warfare ({{currentDevLvl.warfare}})
+      </th>
+      <th [ngClass]="{'text-warning': filterDevBonus === 'technology'}" (click)="filterProjectsList('DEV_BONUS', 'technology')">
+        Technology ({{currentDevLvl.technology}})
+      </th>
+      <th [ngClass]="{'text-warning': filterDevBonus === 'food_supply'}" (click)="filterProjectsList('DEV_BONUS', 'food_supply')">
+        Food supply ({{currentDevLvl.food_supply}})
+      </th>
     </tr>
     <ng-container *ngFor="let project of filteredProjectList">
       <tr [ngClass]="{
@@ -27,10 +35,18 @@
         <td>{{project.name}} <span *ngIf="!project.isFinished">({{project.work_points_completed}}/{{project.work_points}})</span></td>
         <td><span *ngFor="let skill of project.skills">{{skill}}, </span></td>
         <td><app-development-bonus [development]="project.dev_bonus"></app-development-bonus></td>
-        <td>{{project.dev_req?.culture}}</td>
-        <td>{{project.dev_req?.warfare}}</td>
-        <td>{{project.dev_req?.technology}}</td>
-        <td>{{project.dev_req?.food_supply}}</td>
+        <td [ngClass]="{'red': project.dev_req?.culture && project.dev_req.culture > currentDevLvl.culture}">
+          {{project.dev_req?.culture}}
+        </td>
+        <td [ngClass]="{'red': project.dev_req?.warfare && project.dev_req.warfare > currentDevLvl.warfare}">
+          {{project.dev_req?.warfare}}
+        </td>
+        <td [ngClass]="{'red': project.dev_req?.technology && project.dev_req.technology > currentDevLvl.technology}">
+          {{project.dev_req?.technology}}
+        </td>
+        <td [ngClass]="{'red': project.dev_req?.food_supply && project.dev_req.food_supply > currentDevLvl.food_supply}">
+          {{project.dev_req?.food_supply}}
+        </td>
       </tr>
     </ng-container>
 
