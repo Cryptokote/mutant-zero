@@ -14,6 +14,7 @@ export class ProjectsListComponent implements OnInit {
   public projectsListExpanded: Array<ExpandedProject>;
   public filteredProjectList: Array<ExpandedProject>;
   public filter = 'ALL';
+  public filterDevBonus = '';
   constructor() { }
 
   ngOnInit() {
@@ -49,8 +50,9 @@ export class ProjectsListComponent implements OnInit {
     return isSatisfied;
   }
 
-  filterProjectsList(filterValue: string) {
+  filterProjectsList(filterValue: string, devBonus: string = '') {
     this.filter = filterValue;
+    this.filterDevBonus = devBonus;
     switch (this.filter) {
       case 'ALL':
         this.filteredProjectList = [...this.projectsListExpanded];
@@ -60,6 +62,10 @@ export class ProjectsListComponent implements OnInit {
         break;
       case 'AVAILABLE':
         this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isAvailable || proj.isInWork || proj.isFinished);
+        break;
+      case 'DEV_BONUS':
+        console.log(1);
+        this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.dev_bonus && proj.dev_bonus[devBonus] && !proj.isFinished);
         break;
     }
   }

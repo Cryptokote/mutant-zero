@@ -470,18 +470,25 @@ dev_bonus: {technology: 2}}
 export const CURRENT_DEV_LVL: Devs = {
   culture: 11,
   food_supply: 12,
-  warfare: 3,
-  technology: 10
+  warfare: 12,
+  technology: 14
 };
 export const PROJECTS_IN_PROGRESS: StartedProject = {
   CROPLAND: 2,
   WATCHTOWER: 2,
   MUSEUM: 5,
-  SUNDIAL: 0,
+  SUNDIAL: 3,
   TAVERN: 0,
-  'ZONE WRESTLING': 2
+  'ZONE WRESTLING': 2,
+  WORKSHOP: 1,
+  DEFENSES: 3,
+  STABLES: 0,
+  MILITA: 0
 };
-export const FINISHED_PROJECTS: Array<string> = ['HUNTING PARTY', 'WATCHTOWER', 'MUSEUM'];
+
+export const FINISHED_PROJECTS: Array<string> = [
+  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING', 'DEFENSES', 'SUNDIAL',
+];
 export const ZONE_MAP_DATA: Array<Sector> = [
   {row: 'Q', col: 24, explored: true, isArk: true, rotLvl: 0},
   {row: 'P', col: 23, explored: true, rotLvl: 1, comment: 'battlefield', treatFound: true, treat: ''},
@@ -503,3 +510,4 @@ export const ZONE_MAP_DATA: Array<Sector> = [
 export const PLAYERS_LOCATION: Array<ZoneMapCoordinates> = [
   {row: 'O', col: 22}
 ];
+
