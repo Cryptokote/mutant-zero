@@ -1,4 +1,4 @@
-import {Devs, Project, Sector, StartedProject} from './data.types';
+import {Devs, Project, Sector, StartedProject, ZoneMapCoordinates} from './data.types';
 
 export const PROJECTS: Array<Project> = [
 {name: 'DEFENSES',
@@ -482,4 +482,24 @@ export const PROJECTS_IN_PROGRESS: StartedProject = {
   'ZONE WRESTLING': 2
 };
 export const FINISHED_PROJECTS: Array<string> = ['HUNTING PARTY', 'WATCHTOWER', 'MUSEUM'];
-export const ZONE_MAP_DATA: Array<Sector> = [{row: 'Q', col: 24, explored: true, isArk: true}];
+export const ZONE_MAP_DATA: Array<Sector> = [
+  {row: 'Q', col: 24, explored: true, isArk: true, rotLvl: 0},
+  {row: 'P', col: 23, explored: true, rotLvl: 1, comment: 'battlefield', treatFound: true, treat: ''},
+  {row: 'Q', col: 23, explored: true, rotLvl: 1, comment: 'metro station', treatFound: true, treat: ''},
+  {row: 'R', col: 23, explored: true, rotLvl: 1, comment: 'dead forest', treatFound: true, treat: ''},
+  {row: 'P', col: 24, explored: true, rotLvl: 1, comment: 'industrial ruins', treatFound: true, treat: ''},
+  {row: 'Q', col: 25, explored: true, rotLvl: 2, comment: 'broken bridge', treatFound: true, treat: ''},
+  {row: 'P', col: 25, explored: true, rotLvl: 1, comment: 'dead forest', treatFound: true, treat: ''},
+  {row: 'R', col: 25, explored: true, rotLvl: 1, comment: 'gas station', treatFound: true, treat: ''},
+  {row: 'R', col: 24, explored: true, rotLvl: 1, comment: 'bushes', treatFound: true, treat: ''},
+  {row: 'O', col: 25, explored: true, rotLvl: 1, comment: 'field, river', treatFound: false, treat: ''},
+  {row: 'N', col: 25, explored: true, rotLvl: 2, comment: 'underground settlement', treatFound: false, treat: ''},
+  {row: 'O', col: 26, explored: true, rotLvl: 1, comment: 'frogs raft', treatFound: false, treat: ''},
+  {row: 'P', col: 26, explored: false, rotLvl: 2, comment: '', treatFound: false, treat: ''},
+  {row: 'M', col: 20, explored: false, rotLvl: null, comment: 'workshop', treatFound: false, treat: ''},
+  {row: 'O', col: 22, explored: false, rotLvl: 0, comment: 'city with bridge', treatFound: true, treat: ''},
+];
+
+export const PLAYERS_LOCATION: Array<ZoneMapCoordinates> = [
+  {row: 'O', col: 22}
+];

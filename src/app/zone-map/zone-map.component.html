@@ -1,7 +1,25 @@
-<table>
-  <div class="wrapper">
-    <div class="sector" *ngFor="let sector of mapData; let i = index">
-      {{sector?.row}}{{sector?.col}}
-    </div>
+<div class="wrapper">
+  <div class="sector" *ngFor="let sector of mapData; let i = index"
+       [ngClass]="{
+          rotOasis: sector?.rotLvl === 0,
+          rotWeak: sector?.rotLvl === 1,
+          rotHeavy: sector?.rotLvl === 2,
+          rotHotspot: sector?.rotLvl === 3
+       }"
+  >
+    {{sector?.row}}{{sector?.col}}
+    <div class="playersSpot" *ngIf="sector?.youAreHere"></div>
   </div>
-</table>
+</div>
+<div class="add-data-wraper">
+  <form [formGroup]="sectorForm">
+    <div class="input-group mb-3">
+      <input type="text" formControlName="row" class="form-control">
+      <input type="number" formControlName="col" class="form-control">
+      <input type="number" formControlName="rotLvl" class="form-control">
+      <input type="text" formControlName="comment" class="form-control">
+
+      <button class="btn btn-success" type="submit">Purchase</button>
+    </div>
+  </form>
+</div>

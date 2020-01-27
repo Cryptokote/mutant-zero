@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {ProjectsListModule} from './projects-list/projects-list.module';
 import { DevelopmentBonusComponent } from './development-bonus/development-bonus.component';
 import { ZoneMapComponent } from './zone-map/zone-map.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ZoneMapComponent } from './zone-map/zone-map.component';
     ZoneMapComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     ProjectsListModule

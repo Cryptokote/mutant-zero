@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Sector, ZoneMapCoordinates} from '../dataFiles/data.types';
-import {ZONE_MAP_DATA} from '../dataFiles/projects.data';
+import {PLAYERS_LOCATION, ZONE_MAP_DATA} from '../dataFiles/projects.data';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-zone-map',
@@ -10,9 +11,18 @@ import {ZONE_MAP_DATA} from '../dataFiles/projects.data';
 export class ZoneMapComponent implements OnInit {
   public rowsCoordsArray = Array(21).fill(0).map((x, i) => String.fromCharCode(97 + i));
   public colsCoordsArray = Array(30).fill(0).map((x, i) => i + 1);
-  public mapData = Array(21 * 30).fill({});
+  public mapData: Array<Sector> = Array(21 * 30).fill({});
+  public sectorForm;
   private exploredSectors = ZONE_MAP_DATA;
-  constructor() { }
+  private youAreHere = PLAYERS_LOCATION;
+  constructor(private formBuilder: FormBuilder) {
+    this.sectorForm = this.formBuilder.group({
+      col: '',
+      row: '',
+      rotLvl: '',
+      comment: ''
+    });
+  }
 
   ngOnInit() {
     this.fillMap();
@@ -21,13 +31,14 @@ export class ZoneMapComponent implements OnInit {
   fillMap() {
     this.exploredSectors.forEach(exploredSector => {
       const index = this.convertCoordinatesToIndex(exploredSector.col, exploredSector.row);
-      console.log(index);
       this.mapData[index] = exploredSector;
+      if (this.youAreHere.find(coord => coord.row === exploredSector.row && coord.col === exploredSector.col)) {
+          this.mapData[index].youAreHere = true;
+      }
     });
   }
 
   convertCoordinatesToIndex(col: number, row: string): number {
-    console.log(col, row, row.toLowerCase().charCodeAt(0))
     return 30 * (row.toLowerCase().charCodeAt(0) - 97) + col;
   }
 

@@ -2,10 +2,36 @@
   display: flex;
   flex-wrap: wrap;
   width: 1502px;
-  border: 1px solid red;
+  border: 1px solid #b9b9b9;
 }
 .sector {
   width: 50px;
   height: 50px;
-  border: 1px solid red;
+  border: 1px solid #b9b9b9;
+}
+
+
+.rotOasis {
+  background-color: #7ee283;
+}
+.rotWeak {
+  background-color: #e2e25f;
+}
+.rotHeavy {
+  background-color: #e28559;
+}
+.rotHotspot {
+  background-color: #e23a38;
+}
+
+.playersSpot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ff5200;
+}
+
+.add-data-wraper input{
+  margin-right: 5px;
 }

@@ -32,8 +32,11 @@ export interface Sector extends ZoneMapCoordinates {
   rotLvl?: number;
   iconPath?: string;
   treat?: string;
+  treatFound?: boolean;
   artifact?: boolean;
+  comment?: string;
   isArk?: boolean;
+  youAreHere?: boolean;
   explored: boolean;
 }
 
