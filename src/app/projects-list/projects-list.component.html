@@ -2,27 +2,41 @@
   <div class="btn btn-warning" (click)="filterProjectsList('ALL')">
     All items
   </div>
+  <div class="btn btn-warning" (click)="filterProjectsList('COMPLETED')">
+    Completed
+  </div>
   <div class="btn btn-warning" (click)="filterProjectsList('NO_COMPLETED')">
     Without completed
   </div>
   <div class="btn btn-warning" (click)="filterProjectsList('AVAILABLE')">
     Available only
   </div>
+  <div class="btn btn-warning" (click)="filterProjectsList('IN_PROGRESS')">
+    In-progress only
+  </div>
   <table class="table table-dark">
     <tr>
       <th>Project name\Requirements</th>
       <th>Skills</th>
       <th>Profit</th>
-      <th [ngClass]="{'text-warning': filterDevBonus === 'culture'}" (click)="filterProjectsList('DEV_BONUS', 'culture')">
+      <th [ngClass]="{'text-warning': filterDevBonus === 'culture'}"
+          class="clickable"
+          (click)="filterProjectsList('DEV_BONUS', 'culture')">
         Culture ({{currentDevLvl.culture}})
       </th>
-      <th [ngClass]="{'text-warning': filterDevBonus === 'warfare'}" (click)="filterProjectsList('DEV_BONUS', 'warfare')">
+      <th [ngClass]="{'text-warning': filterDevBonus === 'warfare'}"
+          class="clickable"
+          (click)="filterProjectsList('DEV_BONUS', 'warfare')">
         Warfare ({{currentDevLvl.warfare}})
       </th>
-      <th [ngClass]="{'text-warning': filterDevBonus === 'technology'}" (click)="filterProjectsList('DEV_BONUS', 'technology')">
+      <th [ngClass]="{'text-warning': filterDevBonus === 'technology'}"
+          class="clickable"
+          (click)="filterProjectsList('DEV_BONUS', 'technology')">
         Technology ({{currentDevLvl.technology}})
       </th>
-      <th [ngClass]="{'text-warning': filterDevBonus === 'food_supply'}" (click)="filterProjectsList('DEV_BONUS', 'food_supply')">
+      <th [ngClass]="{'text-warning': filterDevBonus === 'food_supply'}"
+          class="clickable"
+          (click)="filterProjectsList('DEV_BONUS', 'food_supply')">
         Food supply ({{currentDevLvl.food_supply}})
       </th>
     </tr>
@@ -32,7 +46,9 @@
       'bg-warning': project.isInWork,
       'table-dark': !project.isAvailable && !project.isInWork && !project.isFinished
       }">
-        <td>{{project.name}} <span *ngIf="!project.isFinished">({{project.work_points_completed}}/{{project.work_points}})</span></td>
+        <td (click)="openDesctiption(project)" class="clickable">
+          {{project.name}}<span *ngIf="project.other_req" class="red">*</span> <span *ngIf="!project.isFinished">({{project.work_points_completed}}/{{project.work_points}})</span>
+        </td>
         <td><span *ngFor="let skill of project.skills">{{skill}}, </span></td>
         <td><app-development-bonus [development]="project.dev_bonus"></app-development-bonus></td>
         <td [ngClass]="{'red': project.dev_req?.culture && project.dev_req.culture > currentDevLvl.culture}">
@@ -47,6 +63,15 @@
         <td [ngClass]="{'red': project.dev_req?.food_supply && project.dev_req.food_supply > currentDevLvl.food_supply}">
           {{project.dev_req?.food_supply}}
         </td>
+      </tr>
+      <tr *ngIf="openedProject === project" class="bg-info">
+        <td colspan="7">{{project.description}}</td>
+      </tr>
+      <tr *ngIf="openedProject === project && project.other_req" class="bg-info">
+        <td colspan="7"><b>Other Requirements: </b>{{project.other_req}}</td>
+      </tr>
+      <tr *ngIf="openedProject === project && project.special" class="bg-info">
+        <td colspan="7"><b>Special: </b>{{project.special}}</td>
       </tr>
     </ng-container>
 

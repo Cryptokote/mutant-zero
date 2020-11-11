@@ -449,7 +449,7 @@ skills: ['Comprehend'],
 work_points: 8,
 dev_bonus: null,
 special: 'Any rolls to Heal a critical injury at the surgical clinic get a +two modification. ' +
-'The Session Body Count (below) is reduced by one'},
+'The Session Body Count is reduced by one'},
 
 {name: 'ELECTRIC LIGHTS',
 description: 'Illuminates the Ark like in the Old Age, and turns it into a beacon seen for miles at night.',
@@ -465,29 +465,50 @@ dev_req: {technology: 50},
 other_req: 'Workshop, Generator',
 skills: ['Comprehend'],
 work_points: 8,
-dev_bonus: {technology: 2}}
+dev_bonus: {technology: 2}},
+
+{name: 'CARTOGRAPHY',
+description: 'Custom',
+dev_req: null,
+skills: ['Sense Emotion', 'Know the Zone'],
+work_points: 8,
+dev_bonus: {warfare: 1, culture: 1}},
+
+{name: 'JELLY FARM',
+description: 'Custom',
+dev_req: null,
+skills: ['Comprehend', 'Endure'],
+work_points: 8,
+dev_bonus: {technology: 2}},
+
+
 ];
 export const CURRENT_DEV_LVL: Devs = {
-  culture: 11,
-  food_supply: 12,
+  culture: 14,
+  food_supply: 21,
   warfare: 12,
-  technology: 14
+  technology: 36
 };
 export const PROJECTS_IN_PROGRESS: StartedProject = {
-  CROPLAND: 2,
+  CROPLAND: 11,
   WATCHTOWER: 2,
   MUSEUM: 5,
   SUNDIAL: 3,
   TAVERN: 0,
   'ZONE WRESTLING': 2,
-  WORKSHOP: 1,
+  WORKSHOP: 10,
   DEFENSES: 3,
-  STABLES: 0,
-  MILITA: 0
+  STABLES: 1,
+  MILITA: 6,
+  GENERATOR: 5,
+  CARTOGRAPHY: 7,
+  'JELLY FARM': 0,
+  LIBRARY: 0,
+  DISTILLERY: 3
 };
 
 export const FINISHED_PROJECTS: Array<string> = [
-  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING', 'DEFENSES', 'SUNDIAL',
+  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING', 'DEFENSES', 'SUNDIAL', 'WORKSHOP', 'GENERATOR', 'CROPLAND', 'DISTILLERY'
 ];
 export const ZONE_MAP_DATA: Array<Sector> = [
   {row: 'Q', col: 24, explored: true, isArk: true, rotLvl: 0},

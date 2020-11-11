@@ -15,6 +15,7 @@ export class ProjectsListComponent implements OnInit {
   public filteredProjectList: Array<ExpandedProject>;
   public filter = 'ALL';
   public filterDevBonus = '';
+  public openedProject: ExpandedProject;
   constructor() { }
 
   ngOnInit() {
@@ -60,14 +61,24 @@ export class ProjectsListComponent implements OnInit {
       case 'NO_COMPLETED':
         this.filteredProjectList = this.projectsListExpanded.filter(proj => !proj.isFinished);
         break;
+      case 'COMPLETED':
+        this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isFinished);
+        break;
       case 'AVAILABLE':
         this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isAvailable || proj.isInWork || proj.isFinished);
+        break;
+      case 'IN_PROGRESS':
+        this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isInWork);
         break;
       case 'DEV_BONUS':
         console.log(1);
         this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.dev_bonus && proj.dev_bonus[devBonus] && !proj.isFinished);
         break;
     }
+  }
+
+  openDesctiption(proj: ExpandedProject) {
+    this.openedProject = this.openedProject === proj ? null : proj;
   }
 }
 
