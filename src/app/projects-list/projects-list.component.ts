@@ -11,8 +11,8 @@ import {ProjectListService} from './project-list.service';
 export class ProjectsListComponent implements OnInit {
   private projectsList: Array<Project> = PROJECTS;
   private finishedProjects: Array<string>;           // FINISHED_PROJECTS;
-  private currentDevLvl: Devs;                       // CURRENT_DEV_LVL;
   private projectsInProgress: StartedProject;        // PROJECTS_IN_PROGRESS;
+  public currentDevLvl: Devs;                       // CURRENT_DEV_LVL;
   public projectsListExpanded: Array<ExpandedProject>;
   public filteredProjectList: Array<ExpandedProject>;
   public filter = 'ALL';
