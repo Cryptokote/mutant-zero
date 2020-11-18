@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CURRENT_DEV_LVL, FINISHED_PROJECTS, PROJECTS, PROJECTS_IN_PROGRESS} from '../dataFiles/projects.data';
 import {Devs, ExpandedProject, Project, StartedProject} from '../dataFiles/data.types';
+import {ProjectListService} from './project-list.service';
+
 @Component({
   selector: 'app-projects-list',
   templateUrl: './projects-list.component.html',
@@ -8,17 +10,24 @@ import {Devs, ExpandedProject, Project, StartedProject} from '../dataFiles/data.
 })
 export class ProjectsListComponent implements OnInit {
   private projectsList: Array<Project> = PROJECTS;
-  private finishedProjects: Array<string> = FINISHED_PROJECTS;
-  private currentDevLvl: Devs = CURRENT_DEV_LVL;
-  private projectsInProgress: StartedProject = PROJECTS_IN_PROGRESS;
+  private finishedProjects: Array<string>;           // FINISHED_PROJECTS;
+  private currentDevLvl: Devs;                       // CURRENT_DEV_LVL;
+  private projectsInProgress: StartedProject;        // PROJECTS_IN_PROGRESS;
   public projectsListExpanded: Array<ExpandedProject>;
   public filteredProjectList: Array<ExpandedProject>;
   public filter = 'ALL';
   public filterDevBonus = '';
-  constructor() { }
+  public openedProject: ExpandedProject;
+  constructor(private projectsService: ProjectListService) { }
 
   ngOnInit() {
-    this.initProjectsList();
+    this.projectsService.getProjectsData().subscribe((projectsData) => {
+      console.log(projectsData);
+      this.finishedProjects = projectsData.finishedProjects.finishedProjectsList;
+      this.currentDevLvl = projectsData.currentDevLvl;
+      this.projectsInProgress = projectsData.startedProjects;
+      this.initProjectsList();
+    });
   }
 
   initProjectsList() {
@@ -60,14 +69,24 @@ export class ProjectsListComponent implements OnInit {
       case 'NO_COMPLETED':
         this.filteredProjectList = this.projectsListExpanded.filter(proj => !proj.isFinished);
         break;
+      case 'COMPLETED':
+        this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isFinished);
+        break;
       case 'AVAILABLE':
         this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isAvailable || proj.isInWork || proj.isFinished);
+        break;
+      case 'IN_PROGRESS':
+        this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.isInWork);
         break;
       case 'DEV_BONUS':
         console.log(1);
         this.filteredProjectList = this.projectsListExpanded.filter(proj => proj.dev_bonus && proj.dev_bonus[devBonus] && !proj.isFinished);
         break;
     }
+  }
+
+  openDesctiption(proj: ExpandedProject) {
+    this.openedProject = this.openedProject === proj ? null : proj;
   }
 }
 

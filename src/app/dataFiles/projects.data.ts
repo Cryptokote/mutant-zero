@@ -1,4 +1,4 @@
-import {Devs, Project, StartedProject} from './data.types';
+import {Devs, Project, Sector, StartedProject, ZoneMapCoordinates} from './data.types';
 
 export const PROJECTS: Array<Project> = [
 {name: 'DEFENSES',
@@ -146,7 +146,7 @@ description: 'A collection of books, magazines and newspapers from the Old Age.'
 dev_req: {culture: 10},
 skills: ['Comprehend'],
 work_points: 12,
-dev_bonus: {culture: 3}},
+dev_bonus: {culture: 2, warfare: 1}},
 
 {name: 'STABLES',
 description: 'Bitterbeasts (page 178) and other animals in the Zone can be caught to be used as mounts by ' +
@@ -449,7 +449,7 @@ skills: ['Comprehend'],
 work_points: 8,
 dev_bonus: null,
 special: 'Any rolls to Heal a critical injury at the surgical clinic get a +two modification. ' +
-'The Session Body Count (below) is reduced by one'},
+'The Session Body Count is reduced by one'},
 
 {name: 'ELECTRIC LIGHTS',
 description: 'Illuminates the Ark like in the Old Age, and turns it into a beacon seen for miles at night.',
@@ -465,26 +465,71 @@ dev_req: {technology: 50},
 other_req: 'Workshop, Generator',
 skills: ['Comprehend'],
 work_points: 8,
-dev_bonus: {technology: 2}}
+dev_bonus: {technology: 2}},
+
+{name: 'CARTOGRAPHY',
+description: 'Custom',
+dev_req: null,
+skills: ['Sense Emotion', 'Know the Zone'],
+work_points: 8,
+dev_bonus: {warfare: 1, culture: 1}},
+
+{name: 'JELLY FARM',
+description: 'Custom',
+dev_req: null,
+skills: ['Comprehend', 'Endure'],
+work_points: 8,
+dev_bonus: {technology: 2}},
+
+
 ];
 export const CURRENT_DEV_LVL: Devs = {
-  culture: 11,
-  food_supply: 12,
-  warfare: 12,
-  technology: 14
+  culture: 17,
+  food_supply: 21,
+  warfare: 17,
+  technology: 36
 };
 export const PROJECTS_IN_PROGRESS: StartedProject = {
-  CROPLAND: 2,
+  CROPLAND: 11,
   WATCHTOWER: 2,
   MUSEUM: 5,
+  SURGERY: 0,
   SUNDIAL: 3,
   TAVERN: 0,
   'ZONE WRESTLING': 2,
-  WORKSHOP: 1,
+  WORKSHOP: 10,
   DEFENSES: 3,
-  STABLES: 0,
-  MILITA: 0
+  STABLES: 1,
+  MILITA: 7,
+  GENERATOR: 5,
+  CARTOGRAPHY: 7,
+  'JELLY FARM': 0,
+  LIBRARY: 7,
+  DISTILLERY: 3
 };
+
 export const FINISHED_PROJECTS: Array<string> = [
-  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING', 'DEFENSES', 'SUNDIAL',
+  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING',
+  'DEFENSES', 'SUNDIAL', 'WORKSHOP', 'GENERATOR', 'CROPLAND', 'DISTILLERY', 'CARTOGRAPHY'
+];
+export const ZONE_MAP_DATA: Array<Sector> = [
+  {row: 'Q', col: 24, explored: true, isArk: true, rotLvl: 0},
+  {row: 'P', col: 23, explored: true, rotLvl: 1, comment: 'battlefield', treatFound: true, treat: ''},
+  {row: 'Q', col: 23, explored: true, rotLvl: 1, comment: 'metro station', treatFound: true, treat: ''},
+  {row: 'R', col: 23, explored: true, rotLvl: 1, comment: 'dead forest', treatFound: true, treat: ''},
+  {row: 'P', col: 24, explored: true, rotLvl: 1, comment: 'industrial ruins', treatFound: true, treat: ''},
+  {row: 'Q', col: 25, explored: true, rotLvl: 2, comment: 'broken bridge', treatFound: true, treat: ''},
+  {row: 'P', col: 25, explored: true, rotLvl: 1, comment: 'dead forest', treatFound: true, treat: ''},
+  {row: 'R', col: 25, explored: true, rotLvl: 1, comment: 'gas station', treatFound: true, treat: ''},
+  {row: 'R', col: 24, explored: true, rotLvl: 1, comment: 'bushes', treatFound: true, treat: ''},
+  {row: 'O', col: 25, explored: true, rotLvl: 1, comment: 'field, river', treatFound: false, treat: ''},
+  {row: 'N', col: 25, explored: true, rotLvl: 2, comment: 'underground settlement', treatFound: false, treat: ''},
+  {row: 'O', col: 26, explored: true, rotLvl: 1, comment: 'frogs raft', treatFound: false, treat: ''},
+  {row: 'P', col: 26, explored: false, rotLvl: 2, comment: '', treatFound: false, treat: ''},
+  {row: 'M', col: 20, explored: false, rotLvl: null, comment: 'workshop', treatFound: false, treat: ''},
+  {row: 'O', col: 22, explored: false, rotLvl: 0, comment: 'city with bridge', treatFound: true, treat: ''},
+];
+
+export const PLAYERS_LOCATION: Array<ZoneMapCoordinates> = [
+  {row: 'O', col: 22}
 ];

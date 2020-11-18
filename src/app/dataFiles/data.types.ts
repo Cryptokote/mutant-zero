@@ -27,3 +27,28 @@ export interface Devs {
 export interface StartedProject {
   [key: string]: number;
 }
+
+export interface Sector extends ZoneMapCoordinates {
+  rotLvl?: number;
+  iconPath?: string;
+  treat?: string;
+  treatFound?: boolean;
+  artifact?: boolean;
+  comment?: string;
+  isArk?: boolean;
+  youAreHere?: boolean;
+  explored: boolean;
+}
+
+export interface ZoneMapCoordinates {
+  col: number;
+  row: string;
+}
+
+export interface FirebaseProjectsData {
+  finishedProjects: {
+    finishedProjectsList: Array<string>
+  };
+  startedProjects: StartedProject;
+  currentDevLvl: Devs;
+}
