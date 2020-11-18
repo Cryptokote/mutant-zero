@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CURRENT_DEV_LVL, FINISHED_PROJECTS, PROJECTS, PROJECTS_IN_PROGRESS} from '../dataFiles/projects.data';
 import {Devs, ExpandedProject, Project, StartedProject} from '../dataFiles/data.types';
+import {ProjectListService} from './project-list.service';
+
 @Component({
   selector: 'app-projects-list',
   templateUrl: './projects-list.component.html',
@@ -8,18 +10,24 @@ import {Devs, ExpandedProject, Project, StartedProject} from '../dataFiles/data.
 })
 export class ProjectsListComponent implements OnInit {
   private projectsList: Array<Project> = PROJECTS;
-  private finishedProjects: Array<string> = FINISHED_PROJECTS;
-  private currentDevLvl: Devs = CURRENT_DEV_LVL;
-  private projectsInProgress: StartedProject = PROJECTS_IN_PROGRESS;
+  private finishedProjects: Array<string>;           // FINISHED_PROJECTS;
+  private currentDevLvl: Devs;                       // CURRENT_DEV_LVL;
+  private projectsInProgress: StartedProject;        // PROJECTS_IN_PROGRESS;
   public projectsListExpanded: Array<ExpandedProject>;
   public filteredProjectList: Array<ExpandedProject>;
   public filter = 'ALL';
   public filterDevBonus = '';
   public openedProject: ExpandedProject;
-  constructor() { }
+  constructor(private projectsService: ProjectListService) { }
 
   ngOnInit() {
-    this.initProjectsList();
+    this.projectsService.getProjectsData().subscribe((projectsData) => {
+      console.log(projectsData);
+      this.finishedProjects = projectsData.finishedProjects.finishedProjectsList;
+      this.currentDevLvl = projectsData.currentDevLvl;
+      this.projectsInProgress = projectsData.startedProjects;
+      this.initProjectsList();
+    });
   }
 
   initProjectsList() {

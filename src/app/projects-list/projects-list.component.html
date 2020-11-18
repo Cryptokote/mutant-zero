@@ -16,28 +16,28 @@
   </div>
   <table class="table table-dark">
     <tr>
-      <th>Project name\Requirements</th>
+      <th>Project name</th>
       <th>Skills</th>
       <th>Profit</th>
       <th [ngClass]="{'text-warning': filterDevBonus === 'culture'}"
           class="clickable"
           (click)="filterProjectsList('DEV_BONUS', 'culture')">
-        Culture ({{currentDevLvl.culture}})
+        Cult ({{currentDevLvl?.culture}})
       </th>
       <th [ngClass]="{'text-warning': filterDevBonus === 'warfare'}"
           class="clickable"
           (click)="filterProjectsList('DEV_BONUS', 'warfare')">
-        Warfare ({{currentDevLvl.warfare}})
+        War ({{currentDevLvl?.warfare}})
       </th>
       <th [ngClass]="{'text-warning': filterDevBonus === 'technology'}"
           class="clickable"
           (click)="filterProjectsList('DEV_BONUS', 'technology')">
-        Technology ({{currentDevLvl.technology}})
+        Tech ({{currentDevLvl?.technology}})
       </th>
       <th [ngClass]="{'text-warning': filterDevBonus === 'food_supply'}"
           class="clickable"
           (click)="filterProjectsList('DEV_BONUS', 'food_supply')">
-        Food supply ({{currentDevLvl.food_supply}})
+        Food ({{currentDevLvl?.food_supply}})
       </th>
     </tr>
     <ng-container *ngFor="let project of filteredProjectList">

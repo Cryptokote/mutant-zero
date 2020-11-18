@@ -146,7 +146,7 @@ description: 'A collection of books, magazines and newspapers from the Old Age.'
 dev_req: {culture: 10},
 skills: ['Comprehend'],
 work_points: 12,
-dev_bonus: {culture: 3}},
+dev_bonus: {culture: 2, warfare: 1}},
 
 {name: 'STABLES',
 description: 'Bitterbeasts (page 178) and other animals in the Zone can be caught to be used as mounts by ' +
@@ -484,31 +484,33 @@ dev_bonus: {technology: 2}},
 
 ];
 export const CURRENT_DEV_LVL: Devs = {
-  culture: 14,
+  culture: 17,
   food_supply: 21,
-  warfare: 12,
+  warfare: 17,
   technology: 36
 };
 export const PROJECTS_IN_PROGRESS: StartedProject = {
   CROPLAND: 11,
   WATCHTOWER: 2,
   MUSEUM: 5,
+  SURGERY: 0,
   SUNDIAL: 3,
   TAVERN: 0,
   'ZONE WRESTLING': 2,
   WORKSHOP: 10,
   DEFENSES: 3,
   STABLES: 1,
-  MILITA: 6,
+  MILITA: 7,
   GENERATOR: 5,
   CARTOGRAPHY: 7,
   'JELLY FARM': 0,
-  LIBRARY: 0,
+  LIBRARY: 7,
   DISTILLERY: 3
 };
 
 export const FINISHED_PROJECTS: Array<string> = [
-  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING', 'DEFENSES', 'SUNDIAL', 'WORKSHOP', 'GENERATOR', 'CROPLAND', 'DISTILLERY'
+  'HUNTING PARTY', 'WATCHTOWER', 'MUSEUM', 'ZONE WRESTLING',
+  'DEFENSES', 'SUNDIAL', 'WORKSHOP', 'GENERATOR', 'CROPLAND', 'DISTILLERY', 'CARTOGRAPHY'
 ];
 export const ZONE_MAP_DATA: Array<Sector> = [
   {row: 'Q', col: 24, explored: true, isArk: true, rotLvl: 0},
@@ -531,4 +533,3 @@ export const ZONE_MAP_DATA: Array<Sector> = [
 export const PLAYERS_LOCATION: Array<ZoneMapCoordinates> = [
   {row: 'O', col: 22}
 ];
-

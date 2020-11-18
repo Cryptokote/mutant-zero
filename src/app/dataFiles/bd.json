@@ -1,0 +1,20 @@
+{
+  "startedProjects": {
+    "MILITA": 7,
+    "STABLES": 1,
+    "JELLY FARM": 0,
+    "LIBRARY": 7,
+    "TAVERN": 0,
+    "SURGERY": 0
+  },
+  "finishedProjects": [
+    "HUNTING PARTY", "WATCHTOWER", "MUSEUM", "ZONE WRESTLING",
+    "DEFENSES", "SUNDIAL", "WORKSHOP", "GENERATOR", "CROPLAND", "DISTILLERY", "CARTOGRAPHY"
+  ],
+  "currentDevLvl": {
+    "culture": 17,
+    "food_supply": 21,
+    "warfare": 17,
+    "technology": 36
+  }
+}

@@ -44,3 +44,11 @@ export interface ZoneMapCoordinates {
   col: number;
   row: string;
 }
+
+export interface FirebaseProjectsData {
+  finishedProjects: {
+    finishedProjectsList: Array<string>
+  };
+  startedProjects: StartedProject;
+  currentDevLvl: Devs;
+}
